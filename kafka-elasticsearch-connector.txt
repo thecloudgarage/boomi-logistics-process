@@ -1,0 +1,3 @@
+While logged into docker host.. run the below command to create the elasticsearch connector for kafka
+
+curl -H "Content-Type: application/json" -X POST -d '{  "name": "iot-set-one",  "config": {    "connector.class":"io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",    "tasks.max": "1",    "topics": "iot-set-one",    "key.ignore":"true",    "schema.ignore": "true",    "connection.url": "http://elasticsearch:9200",    "type.name": "account-name",    "name":"elasticsearch-sink"  }}' http://localhost:8083/connectors
