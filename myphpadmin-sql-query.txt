@@ -1,0 +1,20 @@
+The query instills customer_trucks as a junction table meaning it has the necessary attributes to connect customer_details and iot_sensors tables
+
+FULL QUERY
+
+SELECT iotSensorsSerialNumber, truckRegistrationNumber, customerId, customerName, customerAddress, customerContractId, customerContractEndDate
+FROM customer_trucks
+JOIN customer_details
+ON customer_details.customerId = customer_trucks.customerIdTruck
+JOIN iot_sensors
+ON iot_sensors.truckRegistrationNumberIotSensors = customer_trucks.truckRegistrationNumber
+
+SELECTIVE QUERY (for a particular iot sensor serial number)
+
+SELECT iotSensorsSerialNumber, truckRegistrationNumber, customerId, customerName, customerAddress, customerContractId, customerContractEndDate
+FROM customer_trucks
+JOIN customer_details
+ON customer_details.customerId = customer_trucks.customerIdTruck
+JOIN iot_sensors
+ON iot_sensors.truckRegistrationNumberIotSensors = customer_trucks.truckRegistrationNumber
+WHERE iot_sensors.IotSensorsSerialNumber = 'abc-10011-1-1'
