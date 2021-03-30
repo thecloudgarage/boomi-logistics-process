@@ -1,0 +1,8 @@
+Download the file https://jdbc.postgresql.org/download/postgresql-42.2.19.jar
+Place it under atomsphere lib and userlib/database
+restart the atom
+create database connection
+url will be jdbc:postgresql://<instance_endpoint>:<port_no>/<db_name>
+Driver type custom
+driver name org.postgresql.Driver
+test connection
