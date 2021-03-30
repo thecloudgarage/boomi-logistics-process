@@ -1,0 +1,87 @@
+curl -X GET "http://3.142.146.96:9200/iot-set-one/_search?pretty"
+
+Output
+
+{
+    "took": 0,
+    "timed_out": false,
+    "_shards": {
+        "total": 1,
+        "successful": 1,
+        "skipped": 0,
+        "failed": 0
+    },
+    "hits": {
+        "total": {
+            "value": 5,
+            "relation": "eq"
+        },
+        "max_score": 1.0,
+        "hits": [{
+                "_index": "iot-set-one",
+                "_type": "account-name",
+                "_id": "iot-set-one+1+0",
+                "_score": 1.0,
+                "_source": {
+                    "truckRegistrationNumber": "abc-10011-1",
+                    "iotSensorsSerialNumber": "abc-10011-1-1",
+                    "fuel": 17,
+                    "time": "2021-03-29T19:31:20.168Z",
+                    "tempature": 45
+                }
+            },
+            {
+                "_index": "iot-set-one",
+                "_type": "account-name",
+                "_id": "iot-set-one+2+0",
+                "_score": 1.0,
+                "_source": {
+                    "truckRegistrationNumber": "abc-10011-1",
+                    "iotSensorsSerialNumber": "abc-10011-1-1",
+                    "fuel": 17,
+                    "time": "2021-03-29T19:36:22.185Z",
+                    "tempature": 45
+                }
+            },
+            {
+                "_index": "iot-set-one",
+                "_type": "account-name",
+                "_id": "iot-set-one+0+0",
+                "_score": 1.0,
+                "_source": {
+                    "truckRegistrationNumber": "abc-10011-1",
+                    "iotSensorsSerialNumber": "abc-10011-1-1",
+                    "fuel": 17,
+                    "time": "2021-03-29T19:36:29.943Z",
+                    "tempature": 45
+                }
+            },
+            {
+                "_index": "iot-set-one",
+                "_type": "account-name",
+                "_id": "iot-set-one+1+1",
+                "_score": 1.0,
+                "_source": {
+                    "truckRegistrationNumber": "abc-10011-1",
+                    "iotSensorsSerialNumber": "abc-10011-1-1",
+                    "fuel": 17,
+                    "time": "2021-03-29T19:36:34.696Z",
+                    "tempature": 45
+                }
+            },
+            {
+                "_index": "iot-set-one",
+                "_type": "account-name",
+                "_id": "iot-set-one+0+1",
+                "_score": 1.0,
+                "_source": {
+                    "truckRegistrationNumber": "abc-10011-1",
+                    "iotSensorsSerialNumber": "abc-10011-1-1",
+                    "fuel": 17,
+                    "time": "2021-03-29T19:37:01.955Z",
+                    "tempature": 45
+                }
+            }
+        ]
+    }
+}
