@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mysqldb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: legacy
+      MYSQL_DATABASE: customer_inventory
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./config/my.conf:/etc/mysql/conf.d/config-file.cnf"
+      - "./data:/var/lib/mysql:rw"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: always
+    environment:
+      PMA_HOST: mysqldb
+      PMA_USER: root
+      PMA_PASSWORD: legacy
+    ports:
+      - "8980:80"
