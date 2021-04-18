@@ -1,8 +1,0 @@
-Build the dockerized environment to host the legacy database
-
-1. Create two directories named "data" and "config" in the same parent directory of docker-compose.yml
-2. These will be used for mysql persistence in docker
-3. Add the my.conf file under config directory
-4. Start the dockerized environment using docker-compose up -d
-
-

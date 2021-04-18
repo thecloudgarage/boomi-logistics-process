@@ -1,15 +1,16 @@
 version: '3'
 services:
-  mysqldb:
+  mysqldb_customer_inventories:
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: legacy
       MYSQL_DATABASE: customer_inventory
     ports:
-      - "3306:3306"
+      - "33001:3306"
     volumes:
       - "./config/my.conf:/etc/mysql/conf.d/config-file.cnf"
       - "./data:/var/lib/mysql:rw"
+      - "./mysql-dump:/docker-entrypoint-initdb.d"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     restart: always
@@ -18,4 +19,4 @@ services:
       PMA_USER: root
       PMA_PASSWORD: legacy
     ports:
-      - "8980:80"
+      - "34001:80"
