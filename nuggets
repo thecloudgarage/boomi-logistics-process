@@ -1,1 +1,27 @@
 https://stackoverflow.com/questions/10957000/how-to-change-duplicate-rows-to-unique-values-in-mysql
+NOTE THE BELOW WORKS ON MYSQL & DOES NOT WORK ON POSTGRESQL as POSTGRESQL := has some issues on assignment oeprator 
+From the above, I have created the below query based on three columns id, value, newvalue (value has to be preserved, newvalue will be a distinct value as shown in post)
+This query will not work from phpmyadmin, it has to be executed from mysql prompt
+##Table name: abc, column1: id, column2: value, column3: newvalue)
+UPDATE abc t1, 
+(
+    SELECT 
+        id as unique_id,
+		value,
+        newvalue 
+    FROM(
+        SELECT
+          id,
+		  value,
+          IF(@ROW = value, @COUNT, @COUNT := 1),
+          CONCAT(value, ' - ', @COUNT) AS newvalue,
+          @ROW := value,
+          @COUNT := @COUNT + 1
+        FROM abc
+        JOIN (SELECT @COUNT := 0, @ROW := "") AS t
+        WHERE value IN(SELECT value FROM abc
+        GROUP BY value
+        HAVING COUNT(value) > 1)
+    ) AS abc_test
+) as testing
+SET t1.newvalue = testing.newvalue where t1.id = testing.unique_id
