@@ -28,3 +28,7 @@ HAVING COUNT(value) > 1)
 SET t1.newvalue = testing.newvalue where t1.id = testing.unique_id;
 
 <<<<Just logout and login if the above query fails or some weird error>>>>
+
+
+####### CONVERTING springboot application.properties to application.yml
+Use the http://allencoders.online/converters/props2yaml to convert
