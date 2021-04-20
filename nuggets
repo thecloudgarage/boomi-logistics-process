@@ -32,3 +32,20 @@ SET t1.newvalue = testing.newvalue where t1.id = testing.unique_id;
 
 ####### CONVERTING springboot application.properties to application.yml
 Use the http://allencoders.online/converters/props2yaml to convert
+
+####### NEEDED TO USE ADMINER TO CONNECT TO ORACLE-XE.. ADMINER DEFAULT IMAGE DOES NOT HAVE OCI... so needed an alternate image
+https://hub.docker.com/r/soivangoi/nginx-php-adminer-oci8
+and posted it on my docker
+
+Example:
+RUn the XE container
+docker run -d -p 32521:1521 -p 32522:8080 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g-r2:18.04-apex
+
+Optionally run the sqlplus container
+docker run --rm -it loivis/sqlplus system/oracle@//3.142.146.96:32521/XE
+
+Then run the php-adminer image for oracle-xe
+docker run -dit -p 8089:80 soivangoi/nginx-php-adminer-oci8
+OR
+ docker run -dit -p 8089:80 thecloudgarage/oracle-xe-client-adminer
+
