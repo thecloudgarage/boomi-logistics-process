@@ -41,11 +41,14 @@ https://hub.docker.com/r/soivangoi/nginx-php-adminer-oci8
 and posted it on my docker
 
 Example:
-RUn the XE container
+RUn the XE container 
 docker run -d -p 32521:1521 -p 32522:8080 -e ORACLE_ALLOW_REMOTE=true wnameless/oracle-xe-11g-r2:18.04-apex
 
-Optionally run the sqlplus container
+Optionally run the sqlplus container (NOTE: you are automatically connected to database SYSTEM)
 docker run --rm -it loivis/sqlplus system/oracle@//3.142.146.96:32521/XE
+
+Great hack on SQLplus command
+https://www.shellhacks.com/oracle-show-databases-sqlplus/
 
 Then run the php-adminer image for oracle-xe
 docker run -dit -p 8089:80 soivangoi/nginx-php-adminer-oci8
