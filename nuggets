@@ -1,3 +1,6 @@
+sudo docker run -dit --name web-1 -p 80:80 -v /home/ubuntu/apache/:/usr/local/apache2/htdocs/ httpd:2.4
+
+
 https://stackoverflow.com/questions/10957000/how-to-change-duplicate-rows-to-unique-values-in-mysql
 NOTE THE BELOW WORKS ON MYSQL & DOES NOT WORK ON POSTGRESQL as POSTGRESQL := has some issues on assignment oeprator 
 From the above, I have created the below query based on three columns id, value, newvalue (value has to be preserved, newvalue will be a distinct value as shown in post)
@@ -47,5 +50,61 @@ docker run --rm -it loivis/sqlplus system/oracle@//3.142.146.96:32521/XE
 Then run the php-adminer image for oracle-xe
 docker run -dit -p 8089:80 soivangoi/nginx-php-adminer-oci8
 OR
- docker run -dit -p 8089:80 thecloudgarage/oracle-xe-client-adminer
+docker run -dit -p 8089:80 thecloudgarage/oracle-xe-client-adminer
+On the host ip-address:port/XE username: system password: oracle
+
+Once logged in You can navigate to SYSTEM DATABASE and create the below sample tables
+
+############################################################
+CREATE TABLE contactperson (
+  contactpersonempid number(11) NOT NULL,
+  contactpersonncity varchar2(50) NOT NULL,
+  contactpersonfirstname varchar2(50),
+  contactpersonlastname varchar2(50),
+  contactpersonemail varchar2(50),
+  contactpersonphone varchar2(50),
+  CONSTRAINT empid PRIMARY KEY (contactpersonempid) 
+);
+
+INSERT INTO contactperson (contactpersonempid, contactpersonncity, contactpersonfirstname, contactpersonlastname, contactpersonemail, contactpersonphone) VALUES
+(1, 'Bangalore', 'contactpersonfirstname001', 'contactpersonlastname001', 'contactperson001@abc.com', '001-22222222');
+
+CREATE TABLE customerdetails (
+  customerid number(11) NOT NULL,
+  customername varchar2(50) NOT NULL,
+  customeraddress varchar2(500) NOT NULL,
+  customercity varchar2(500) NOT NULL,
+  customerstate varchar2(500) NOT NULL,
+  customerpincode varchar2(500) NOT NULL,
+  customercountry varchar2(500) NOT NULL,
+  customercontactEmailAddress varchar2(50) NOT NULL,
+  customercontactphonenumber varchar2(50) NOT NULL,
+  CONSTRAINT customerid PRIMARY KEY (customerid)
+);
+
+INSERT INTO customerdetails (customerId, customerName, customerAddress, customerCity, customerState, customerPinCode, customerCountry, customerContactEmailAddress, customerContactPhoneNumber) VALUES
+(1, 'customer001', 'customer001-001', 'Bangalore', 'Karnataka', 560001, 'India', 'customer001@abc.com', '001-11111111');
+
+CREATE TABLE vehicleallocation (
+  vehiclergnumber varchar2(500) NOT NULL,
+  customerIdallocated number(11),
+  CONSTRAINT vehiclergnumber PRIMARY KEY (vehiclergnumber)
+);
+
+INSERT INTO vehicleallocation (vehiclergnumber, customerIdallocated) VALUES
+('KA03MK1111', 1);
+
+CREATE TABLE vehicleregistration (
+  vehicleregistrationnumber varchar2(500) NOT NULL,
+  state varchar2(500),
+  city varchar2(500),
+  pincode varchar2(500) DEFAULT NULL,
+  CONSTRAINT vehicleregistrationnumber PRIMARY KEY (vehicleregistrationnumber)
+);
+
+###########################################################################
+
+To build ORACLE-XE integration with Boomi refer to this below article
+https://community.boomi.com/s/article/Unable-to-Connect-to-Oracle-XE-18c-Multitenant-with-a-single-PDB
+
 
