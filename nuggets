@@ -7,6 +7,15 @@ From the above, I have created the below query based on three columns id, value,
 This query will not work from phpmyadmin, it has to be executed from mysql prompt
 ##Table name: abc, column1: id, column2: value, column3: newvalue)
 
+Create a table in MYSQL named test. Create three columns
+col1-id | col2-value | col3-newvalue
+1       | abc        | 
+2       | abc        |
+
+Run the below SQL in phymyadmin for the given database. Execution of the below will result into col3 newvalue populated as abc-1 and abc-2.
+Alternatively, go to phpmyadmin > select the DB > routines > Add routine > name the routine, type-procedure, drop the parameter, paste the below in the box and hit GO.
+Once saved, you can execute the stored procedure and view the results in the table (newvalue will be populated as abc-1 and abc-2
+
 UPDATE abc t1,
 (
 SELECT 
