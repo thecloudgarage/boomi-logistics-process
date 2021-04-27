@@ -1,1 +1,4 @@
 INSERT INTO installationstatus (firstname, lastname, emailaddress, phone, pincode, vehicleregistrationnumber) VALUES ('Mughu','Kumar','mughuk@gmail.com', '9900100001', 5600001, 'KA 03 MK 2223') ON CONFLICT (pincode) DO UPDATE SET firstname=EXCLUDED.firstname, lastname=EXCLUDED.lastname, emailaddress=EXCLUDED.emailaddress, phone=EXCLUDED.phone, vehicleregistrationnumber=EXCLUDED.vehicleregistrationnumber;
+
+ON Boomi for postgres with parameter variables
+INSERT INTO installationstatus (emailaddress, firstname, lastname, phone, pincode, vehicleregistrationnumber) VALUES (?, ?, ?, ?, ?, ? ) ON CONFLICT (pincode) DO UPDATE SET firstname=EXCLUDED.firstname, lastname=EXCLUDED.lastname, emailaddress=EXCLUDED.emailaddress, phone=EXCLUDED.phone, vehicleregistrationnumber=EXCLUDED.vehicleregistrationnumber;;
