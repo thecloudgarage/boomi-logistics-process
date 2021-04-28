@@ -119,4 +119,5 @@ CREATE TABLE vehicleregistration (
 To build ORACLE-XE integration with Boomi refer to this below article
 https://community.boomi.com/s/article/Unable-to-Connect-to-Oracle-XE-18c-Multitenant-with-a-single-PDB
 
-
+##BOOMI FLOW CUSTOM SERVICE WITH INTEGRATION
+https://community.boomi.com/s/article/How-to-build-a-custom-service-using-Flow-and-Integration-without-any-coding
