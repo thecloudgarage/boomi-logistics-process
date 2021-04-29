@@ -121,3 +121,23 @@ https://community.boomi.com/s/article/Unable-to-Connect-to-Oracle-XE-18c-Multite
 
 ##BOOMI FLOW CUSTOM SERVICE WITH INTEGRATION
 https://community.boomi.com/s/article/How-to-build-a-custom-service-using-Flow-and-Integration-without-any-coding
+
+BOOMI GROOVY SCRIPT FOR DATE CHANGES
+
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat
+
+SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss.SSS");
+// the initial date format is "yyyyMMdd HHmmss.SSS" despite the original data being in the format "yyyy-MM-dd" 
+// because of the special internal date format when using a map in boomi
+SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+// is the date format you want the output to be in
+Calendar c = Calendar.getInstance();
+c.setTime(sdf.parse(inputDate));
+c.add(Calendar.DATE, 7);
+// number of days to add, 30 days in this case
+outputDate= sdf2.format(c.getTime());
