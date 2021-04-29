@@ -122,22 +122,36 @@ https://community.boomi.com/s/article/Unable-to-Connect-to-Oracle-XE-18c-Multite
 ##BOOMI FLOW CUSTOM SERVICE WITH INTEGRATION
 https://community.boomi.com/s/article/How-to-build-a-custom-service-using-Flow-and-Integration-without-any-coding
 
-BOOMI GROOVY SCRIPT FOR DATE CHANGES
+For the last branch iotorders, the key requirment was to automatically set the earliest installation date based on the shipping status.
+In doing so, the estimated delivery date  will be incremented by 7 days to create the earliest installation date
+However, in cases where shipping status is in processing the estimated delivery date is an empty string
+Had to improvise considering two posts
+
+https://community.boomi.com/s/article/add-subtract-day-to-from-date-using-groovy
+https://docs.oracle.com/en/cloud/saas/applications-common/20b/cgsac/groovy-basics.html#to_understanding_the_difference_between_null_and_empty_string
+
+BOOMI GROOVY SCRIPT FOR DATE CHANGES (NOTE THE CHANGES FROM ORIGINAL POST TO INCLUDE IF/ELSE FOR EMPTY STRINGS)
+iotorders json profile > keep the estimateddelivery as character itself
+iotorders-subid json profile > keep the estimateddelivery and eerliestinstallation as date/time
+Within the first subid creation map, create a custom scripting function > groovy 2.5 > inputs: inputDate (Character) , outputs: outputDate
+Map the iotorders json profie's earliestdelivery (which is a character) to the inputDate of custom script
+Map the custom script's output to the earliestinstallation (which has a date/time property)
+
+If we don't use the if/else function, the script fails and the map fails too...
 
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat
 
-SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd HHmmss.SSS");
-// the initial date format is "yyyyMMdd HHmmss.SSS" despite the original data being in the format "yyyy-MM-dd" 
-// because of the special internal date format when using a map in boomi
-SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-// is the date format you want the output to be in
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+if (inputDate != '') {
 Calendar c = Calendar.getInstance();
 c.setTime(sdf.parse(inputDate));
-c.add(Calendar.DATE, 7);
+c.add(Calendar.DATE, 30);
 // number of days to add, 30 days in this case
-outputDate= sdf2.format(c.getTime());
+outputDate= sdf.format(c.getTime());
+}
+else {
+outputDate = ''
+}
