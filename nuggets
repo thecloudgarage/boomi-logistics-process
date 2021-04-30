@@ -6,6 +6,9 @@ iotorders json response
 KITEMATIC
 https://medium.com/@OFettal/the-best-way-to-use-oracle-for-students-datagrip-docker-d8006356409d
 
+GETTING STARTED ATOMSPHERE AND FLOW (good examples)
+https://community.boomi.com/s/article/gettingstartedwithatomsphereandflowmanywho
+
 
 https://stackoverflow.com/questions/10957000/how-to-change-duplicate-rows-to-unique-values-in-mysql
 NOTE THE BELOW WORKS ON MYSQL & DOES NOT WORK ON POSTGRESQL as POSTGRESQL := has some issues on assignment oeprator 
