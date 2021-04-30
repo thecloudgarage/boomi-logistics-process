@@ -3,6 +3,9 @@ sudo docker run -dit --name web-1 -p 80:80 -v /home/ubuntu/apache/:/usr/local/ap
 iotorders json response 
 [{"id":1,"gpsterminalnumber":"omni-1","country":"India","state":"Karnataka","city":"Bangalore","pincode":560001,"orderstatus":"PROCESSING","estimateddelivery":null},{"id":2,"gpsterminalnumber":"omni-2","country":"India","state":"Karnataka","city":"Mysore","pincode":7600001,"orderstatus":"SHIPPED","estimateddelivery":"2021-05-10"}]
 
+KITEMATIC
+https://medium.com/@OFettal/the-best-way-to-use-oracle-for-students-datagrip-docker-d8006356409d
+
 
 https://stackoverflow.com/questions/10957000/how-to-change-duplicate-rows-to-unique-values-in-mysql
 NOTE THE BELOW WORKS ON MYSQL & DOES NOT WORK ON POSTGRESQL as POSTGRESQL := has some issues on assignment oeprator 
