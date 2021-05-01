@@ -11,7 +11,7 @@ https://community.boomi.com/s/article/gettingstartedwithatomsphereandflowmanywho
 https://community.boomi.com/s/article/How-to-build-a-custom-service-using-Flow-and-Integration-without-any-coding
 https://community.boomi.com/s/article/File-Uploads-with-the-Flow-Services-Server-Component
 
-Issue with flow integration not returning object type to flow
+###########Issue with flow integration not returning object type to flow
 https://community.boomi.com/s/question/0D51W000080XQyVSAW/setting-up-flow-service-server-integration-with-flow-my-message-actions-are-working-however-data-actions-do-not-seem-to-show-up-in-my-service-in-flow-how-do-i-access-my-new-object-type-in-flow-how-do-i-call-my-new-integration-load-process
 SOLUTION:
 DO NOT IMPORT AN ARRAY REPEATING JSON INTO THE RESPONSE PROFILE.. I ALSO SOLVED IT USING THE LAST COMMENT
@@ -25,6 +25,40 @@ DID NOT WORK >>>
 THIS WORKED 
 {"id":"1","vehicleregistrationnumber":"0x444c2d30312d30303031","gpsterminalnumber":"0x696f742d3030312d303031","vehicletype":"0x63617272696572747275636b","state":"0x44656c6869","city":"0x4e657744656c6869","pincode":"0x313130303031","estimateddelivery":"2021-05-01","earliestinstallation":"2021-05-31","orderstatus":"0x53484950504544","orderid":"0x6f726465722d303031","fleetmanager":"0x636f6e74616374706572736f6e303031","fleetmanageremailaddress":"0x636f6e74616374706572736f6e303031406f7572636f6d70616e792e636f6d","fleetmanagerphone":"0x2b39312d393930312d3939392d302d303031","installationprovidercontactname":"0x696e7374616c6c6174696f6e70726f7669646572636f6e74616374303031","installationprovideremail":"0x696e7374616c6c6174696f6e70726f7669646572636f6e74616374303031406162632e636f6d","installationproviderphone":"0x696e7374616c6c6572303031","installationstatus":"0x","installer":"0x696e7374616c6c6572303031406162632e636f6d","installeremail":"0x39393333333333303031","installerphone":"0x","installerphotoid":"0x","installationcomments":"0x","drivername":"0x64726976657231","driverphone":"0x39393030373030303031","driverphotoid":"0x"}
 BASICALLY Arrays and repeating array profiles will not work with flow services integration
+
+########## Issue with Shared web server not authenticating additonal users for service calls from Flow integration service
+For some reason, if I added additional user in shared web server and generated the token, the service setup on the flow side happened without any hiccups
+However, when the flow app ran, all calls via the flow integration service reported authenticated failed
+This was resolved by sticking to the default user associated with the shared web server. 
+So changed the flow integration service username/token to the default user with the shared web server. Post this tic-tac-toe :)
+
+TO BUILD THE IOT FLOW APP
+1. Create the Flow integraton service with the required inputs (use default user credentials provided by the shared web server)
+2. Create new flow
+
+####Insert "load" element (This is to load the database) > Data actions > new data action 
+* which value > create a new value > what kind of value : LIST > what type of value (select the default object type created by flow integration service)
+* Select the binding > no filter
+* We can also use the default object type for new data action. However, for large data sets it's recommended to convert the object into list 
+
+####Insert page that will be used to display our database records in a table format
+* Add page > new page > main container > drop a table component > settings editable, searchable
+* data source > type of data : this will be default object type 
+* Get data from a list value > select the list created in the previous step
+* State > save whole selection > save the selection made by the user to > create a new value > what kind of value > object > what type of value is this > select the default object type
+* Essentially, this is required to display information in the next STEP map element
+* We are going to place the selected row in a value which is of the default object type
+* Add the columns vid data presentation
+* Add new attribute isRowSelectionDisabled with value false 
+* save component
+* On right hand side > edit metadata > for columns > isEditable > true
+* save page
+
+####Add a STEP map element 
+* In the presentation box > insert values > select the values from the new value created in the previous step (for saving data)
+* Join the outcome > When this outcome is selected > Save changed values > Appearance > place this outcome with a component on the page > select the table component
+* By doing so every row with get a button with a hyperlink to the STEP wherein individual row values as per values inserted will be displayed.
+5. 
 
 
 https://stackoverflow.com/questions/10957000/how-to-change-duplicate-rows-to-unique-values-in-mysql
