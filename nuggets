@@ -1,3 +1,32 @@
+Flow services server is receiving the configuration value as a XML (Example below)
+
+<?xml version="1.0" encoding="UTF-8"?>
+<QueryFilter>
+   <expression xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="GroupingExpression" operator="and">
+      <nestedExpression xsi:type="SimpleExpression" operator="EQUAL" property="state">
+         <argument>"Karnataka"</argument>
+      </nestedExpression>
+   </expression>
+</QueryFilter>
+
+We need to convert this into a Dynamic process property.
+Create a MAP > input profile via the above XML > output profile (dummy json)
+Unfortunately, the printed string value that comes from XML is "\"Karnataka\"". so we need to remove the characters.
+Within the map create a function
+Connect the 
+step-1: Groovy script
+outputone = input.replaceAll (/"/, '');
+outputtwo = outputone.replace("\\", "");
+input name: input
+output name: outputtwo
+
+Step-2:
+Grab the outputtwo from step-1 and connect it to input of step-2 function
+Step-2 function will set the Dynamic process property to whatever name you want to refernce while setting the parameter value in the outbound DB connector
+Step-2 function 
+Connect the XML "argument" to the input
+Connect the 
+
 sudo docker run -dit --name web-1 -p 80:80 -v /home/ubuntu/apache/:/usr/local/apache2/htdocs/ httpd:2.4
 
 iotorders json response 
