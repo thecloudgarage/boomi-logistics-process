@@ -1,4 +1,5 @@
 #!/bin/bash
+# VERIFIED ON UBUNTU 18.04
 
 #INSTALL COMMON UTILITIES
 sudo apt update -y
