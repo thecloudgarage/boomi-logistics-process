@@ -1,0 +1,8 @@
+Manage > Atom > shared web server > base url > override > put the public ip > api type : intermediate > auth : basic > protected headers: use default > save > restart plugin > user management > generate token
+
+Go to flow > create the flow integration service > imp : url will be shared-web-server-ip and port followed by flow services path
+
+flow services path will be found in the integration > build > flow services component.... example /fs/flow-service-testing
+
+so the overall url in the flow service definition will be... example http://13.58.69.44:9090/fs/flow-service-testing
+
