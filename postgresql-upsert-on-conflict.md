@@ -1,0 +1,12 @@
+IN MYSQL ON DUPLICATE STATEMENT REQUIRES THE SECOND SET TO EXCLUDE THE ON "parameter", e.g. id... however in postgresql you have to include all paramaters
+in the first statement block and on conflict block...
+
+ON Boomi for postgres with parameter variables
+```
+INSERT INTO installationstatus (emailaddress, firstname, lastname, phone, pincode, vehicleregistrationnumber) VALUES (?, ?, ?, ?, ?, ? ) ON CONFLICT (pincode) DO UPDATE SET firstname=EXCLUDED.firstname, lastname=EXCLUDED.lastname, emailaddress=EXCLUDED.emailaddress, phone=EXCLUDED.phone, pincode=EXCLUDED.pincode,  vehicleregistrationnumber=EXCLUDED.vehicleregistrationnumber;;
+```
+
+Actual insert statement for iotplanner (verified OK)
+```
+INSERT INTO iotplanner (city, drivername, driverphone, driverphotoid, earliestinstallation, enginenumber, estimateddelivery, fleetmanager, fleetmanageremailaddress, fleetmanagerphone, gpsterminalnumber, id, installationcomments, installationprovidercontactname, installationprovideremail, installationproviderphone, installationstatus, installer, installeremail, installerphone, installerphotoid, orderid, orderstatus, pincode, state, vehicleregistrationnumber, vehicletype) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON CONFLICT (id) DO UPDATE SET city=EXCLUDED.city, drivername=EXCLUDED.drivername, driverphone=EXCLUDED.driverphone, driverphotoid=EXCLUDED.driverphotoid, earliestinstallation=EXCLUDED.earliestinstallation, enginenumber=EXCLUDED.enginenumber, estimateddelivery=EXCLUDED.estimateddelivery, fleetmanager=EXCLUDED.fleetmanager, fleetmanageremailaddress=EXCLUDED.fleetmanageremailaddress, fleetmanagerphone=EXCLUDED.fleetmanagerphone, gpsterminalnumber=EXCLUDED.gpsterminalnumber, id=EXCLUDED.id, installationcomments=EXCLUDED.installationcomments, installationprovidercontactname=EXCLUDED.installationprovidercontactname, installationprovideremail=EXCLUDED.installationprovideremail, installationproviderphone=EXCLUDED.installationproviderphone, installationstatus=EXCLUDED.installationstatus, installer=EXCLUDED.installer, installeremail=EXCLUDED.installeremail, installerphone=EXCLUDED.installerphone, installerphotoid=EXCLUDED.installerphotoid, orderid=EXCLUDED.orderid, orderstatus=EXCLUDED.orderstatus, pincode=EXCLUDED.pincode, state=EXCLUDED.state, vehicleregistrationnumber=EXCLUDED.vehicleregistrationnumber, vehicletype=EXCLUDED.vehicletype;
+```
