@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container-fluid" >
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="slider-content">
+                <h1 class="title">Business is now fully Digital</h1>
+                <p class="text">We blend insights and strategy to create digital products for our forward-thinking organisations.</p>
+              </div>
+            </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+      </div> <!-- carousel-item -->
+      <div class="item">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="slider-content">
+                <h1 class="title">Crafted for integrated success</h1>
+                <p class="text">Real time and data oriented business coupled with a diverse offering of fleet systems</p>
+              </div>
+            </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+      </div> <!-- carousel-item --> 
+      <div class="item">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="slider-content">
+                <h1 class="title">Powered by CloudX and Boomi</h1>
+                <p class="text">Based on cutting edge low code technologies delivered via cloud agnostic methods.. run it anywhere, anyhow!</p>
+              </div>
+            </div>
+        </div> <!-- row -->
+      </div> <!-- container -->
+      </div> <!-- carousel-item -->
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div>
+<style>
+
+.container-fluid {
+    margin-top: -35px;
+	margin-bottom: -10px;
+	}
+
+.carousel .carousel-control, .carousel .carousel-control-prev, .carousel .carousel-control-next {
+	background: none !important;
+	border: none !important;
+}
+
+.carousel {
+    background-image: url("https://files-manywho-com.s3.amazonaws.com/59aff0e7-d9b0-4000-9559-432c941f650e/welcome-iot-desktop-2.png");
+    background-position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	margin-left: -180px;
+	margin-right: -180px;
+}
+    @media (max-width: 767px) {
+    .carousel {
+    background-image: url("https://files-manywho-com.s3.amazonaws.com/59aff0e7-d9b0-4000-9559-432c941f650e/welcome-iot-mobile.jpg");
+    background-position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+	margin-left: -40px;
+	margin-right: -40px;
+	} 
+	}
+
+.carousel .item {
+    width: 100%; /*slider width*/
+    height: 100%; /*slider height*/
+}
+
+.slider-content {
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  margin-left: 40px;
+}
+  @media (max-width: 767px) {
+    .slider-content {
+      padding-top: 60px;
+      padding-bottom: 40px;
+      margin: 20px	  } }
+
+.slider-content .title {
+  font-size: 50px;
+  line-height: 60px;
+  color: #fff;
+  font-weight: 500; }
+  @media (max-width: 767px) {
+    .slider-content .title {
+      font-size: 40px;
+      line-height: 45px;
+      text-align:center		} }
+
+  .slider-content .text {
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    margin-top: 16px; }
+    @media (max-width: 767px) {
+      .slider-content .text {
+        font-size: 20px;
+        line-height: 25px;
+		margin-top: 30px;
+        text-align:center;		} }
+<style>
+</body>
+</html>
+
+
