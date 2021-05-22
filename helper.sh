@@ -1,5 +1,6 @@
 #!/bin/bash
 # VERIFIED ON UBUNTU 18.04
+# After launch, give it a while to finish the installations via user-data
 
 #INSTALL COMMON UTILITIES
 sudo apt update -y
@@ -35,10 +36,10 @@ sudo apt-get update -y
 sudo apt-get install awscli -y
 
 #INSTALL NODEJS
-sudo su
-curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh -o install_nvm.sh
-bash install_nvm.sh
-source ~/.profile
+echo 'export NVM_DIR="/.nvm"' >> ~/.bashrc
+echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.bashrc
+curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.35.3/install.sh | bash
+source /.nvm/nvm.sh
 nvm install v14.17.0
 nvm use v14.17.0
 npm config set user 0
