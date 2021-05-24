@@ -1,5 +1,9 @@
-Assume a table called installationstatus in a database installationstatus
+ACTUAL QUERY used (NOTE For Null values the where condition is written as "WHERE column_name IS NULL)
 
+SELECT completedcount.state as state, completedcount.count as completed, pendingcount.count as pending FROM (SELECT state, COUNT(state) FILTER (WHERE installationstatus = 'completed') FROM iotplanner GROUP BY state) AS completedcount INNER JOIN (SELECT state, COUNT(state) FILTER (WHERE installationstatus IS NULL) FROM iotplanner GROUP BY state) AS pendingcount on completedcount.state = pendingcount.state
+
+Generic example(validated)
+Assume a table called installationstatus in a database installationstatus
 state | installationstatus
 Karnataka | completed
 Karnataka |             (implies blank)
