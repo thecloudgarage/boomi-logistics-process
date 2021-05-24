@@ -1,0 +1,12 @@
+Assume a table called installationstatus in a database installationstatus
+
+state | installationstatus
+Karnataka | completed
+Karnataka |             (implies blank)
+
+The below query will produce the output
+
+state	    | completed	|  pending
+Karnataka	|     1     |	   1
+
+SELECT abcone.state as state, abcone.count as completed, abctwo.count as pending FROM (SELECT state, COUNT(state) FILTER (WHERE installationstatus = 'completed') FROM installationstatus GROUP BY state) AS abcone INNER JOIN (SELECT state, COUNT(state) FILTER (WHERE installationstatus = '') FROM installationstatus GROUP BY state) AS abctwo on abcone.state = abctwo.state
