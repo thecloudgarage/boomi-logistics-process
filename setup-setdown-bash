@@ -1,11 +1,10 @@
 #!/bin/bash
-read -p "boomiToken: " boomiToken
-read -p "boomiEnvironmentId: " boomiEnvironmentId
-read -p "AccessKey: " AccessKey
-read -p "SecretAccessKey: " SecretAccessKey
+read -sp "boomiToken: " boomiToken
+read -sp "boomiEnvironmentId: " boomiEnvironmentId
+read -sp "AccessKey: " AccessKey
+read -sp "SecretAccessKey: " SecretAccessKey
 mkdir /home/ubuntu/boomi-legacy-modern-showcase-v2
-AWS_ACCESS_KEY_ID=$AccessKey AWS_SECRET_ACCESS_KEY=$SecretAccessKey aws s3 cp s3://boomi-legacy-modern-showcase-v2/ /home/ubuntu/boomi-legacy-modern-sh
-owcase-v2/ --recursive
+AWS_ACCESS_KEY_ID=$AccessKey AWS_SECRET_ACCESS_KEY=$SecretAccessKey aws s3 cp s3://boomi-legacy-modern-showcase-v2/ /home/ubuntu/boomi-legacy-modern-showcase-v2/ --recursive
 sed -i "s/boomiToken/$boomiToken/g" /home/ubuntu/boomi-legacy-modern-showcase-v2/boomi-atom/docker-compose.yml
 sed -i "s/boomiEnvironmentId/$boomiEnvironmentId/g" /home/ubuntu/boomi-legacy-modern-showcase-v2/boomi-atom/docker-compose.yml
 mkdir /home/ubuntu/boomi-legacy-modern-showcase-v2/iotinstallation-postgresql/data
