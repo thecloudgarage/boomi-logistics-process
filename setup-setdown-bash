@@ -1,15 +1,19 @@
 #!/bin/bash
-read -sp "boomiToken: " boomiToken
-read -sp "awsAccessKey: " awsAccessKey
-read -sp "awsSecretAccessKey: " awsSecretAccessKey
+read -p "boomiToken: " boomiToken
+read -p "boomiEnvironmentId: " boomiEnvironmentId
+read -p "AccessKey: " AccessKey
+read -p "SecretAccessKey: " SecretAccessKey
 mkdir /home/ubuntu/boomi-legacy-modern-showcase-v2
-AWS_ACCESS_KEY_ID=$awsAccessKey AWS_SECRET_ACCESS_KEY=$awsSecretAccessKey aws s3 cp s3://boomi-legacy-modern-showcase-v2/ /home/ubuntu/boomi-legacy-modern-showcase-v2/ --recursive
+AWS_ACCESS_KEY_ID=$AccessKey AWS_SECRET_ACCESS_KEY=$SecretAccessKey aws s3 cp s3://boomi-legacy-modern-showcase-v2/ /home/ubuntu/boomi-legacy-modern-sh
+owcase-v2/ --recursive
 sed -i "s/boomiToken/$boomiToken/g" /home/ubuntu/boomi-legacy-modern-showcase-v2/boomi-atom/docker-compose.yml
+sed -i "s/boomiEnvironmentId/$boomiEnvironmentId/g" /home/ubuntu/boomi-legacy-modern-showcase-v2/boomi-atom/docker-compose.yml
 mkdir /home/ubuntu/boomi-legacy-modern-showcase-v2/iotinstallation-postgresql/data
 cd /home/ubuntu/boomi-legacy-modern-showcase-v2/iotinstallation-postgresql/ && docker-compose up -d
 cd /home/ubuntu/boomi-legacy-modern-showcase-v2/iotorders && docker-compose up -d --build
 cd /home/ubuntu/boomi-legacy-modern-showcase-v2/legacy-oracle && docker-compose up -d
 cd /home/ubuntu/boomi-legacy-modern-showcase-v2/boomi-atom && docker-compose up -d
+
 
 #!/bin/bash
 cd /home/ubuntu/boomi-legacy-modern-showcase-v2/iotinstallation-postgresql/ && docker-compose down
