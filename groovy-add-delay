@@ -1,0 +1,43 @@
+Create flatfile named abc.xyz
+firstname,lastname
+abc1,xyz1
+abc2,xyz2
+abc3,xyz3
+abc4,xyz4
+
+Disk connector (and pick up this file)
+
+Create a data process shape and split by line
+
+Create a map with input profile and output profile based on above flat file and then later manually add a datetime field in the output profile with the format yyyyMMdd HHmmss.SSS
+
+create a function in between
+input fields: firstname, lastname
+output fields: firstnameoutput, lastnameoutput, datetimeoutput (note datetimeoutput is automatically derived)
+Pass the input profile fields to the function
+Connect the function output fields to the output profile
+
+Below is the grooovy 2.4 script.
+
+import java.util.Properties;
+import java.text.DateFormat;
+import java.util.GregorianCalendar;
+import java.util.Calendar;
+import java.util.Date;
+import java.text.SimpleDateFormat
+import java.io.InputStream;
+// Specify the length of time to wait in seconds.
+
+// Leave the rest of the script as-is to pass the Documents to the next step.
+int intValue = 20;
+for ( int i = 0; i <= intValue; i++) {
+int waitFor = 3;
+Thread.sleep(waitFor * 3000);
+Calendar cal = Calendar.getInstance();
+DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd HHmmss.SSS");
+datetimeoutput = dateFormat.format(cal.getTime());
+firstnameoutput = firstname;
+lastname = lastname;
+}
+
+Lastly close the process with a disk connector!
